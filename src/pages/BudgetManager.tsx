@@ -5,7 +5,7 @@ const BudgetManager: React.FC = () => {
   const [budgets, setBudgets] = useState<Budget[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
 
-  return <div className="container mx-auto">Budget Manager</div>;
+  return <div>Budget Manager</div>;
 };
 
 export default BudgetManager;

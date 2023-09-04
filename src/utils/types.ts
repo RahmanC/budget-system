@@ -11,3 +11,13 @@ export interface Expense {
   amount: number;
   status: string;
 }
+
+export interface SwapTitleType {
+  "/budget": string;
+  "/expenses": string;
+}
+
+export interface NavbarProps {
+  title: string;
+  username: string;
+}
