@@ -36,3 +36,48 @@ export const monthlyExpenses = [
     amount: 5000,
   },
 ];
+
+export const monthlyBudget = [
+  {
+    id: 0,
+    name: "Clothes",
+    amount: 5000,
+    spent: 3000,
+  },
+  {
+    id: 1,
+    name: "Groceries",
+    amount: 10000,
+    spent: 7500,
+  },
+  {
+    id: 2,
+    name: "Home",
+    amount: 10000,
+    spent: 6000,
+  },
+  {
+    id: 3,
+    name: "internet",
+    amount: 10000,
+    spent: 10000,
+  },
+  {
+    id: 4,
+    name: "Tutorial",
+    amount: 5000,
+    spent: 3432,
+  },
+  {
+    id: 5,
+    name: "miscellaneous",
+    amount: 5000,
+    spent: 1200,
+  },
+  {
+    id: 6,
+    name: "Transportation",
+    amount: 20000,
+    spent: 6000,
+  },
+];

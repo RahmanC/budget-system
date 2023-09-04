@@ -33,4 +33,5 @@ export interface Expense {
   color: string;
   value: number;
   id: number;
+  spent: number;
 }

@@ -1,4 +1,5 @@
 import Card from "components/Card";
+import MonthlyBudget from "components/MonthlyBudget";
 import MonthlyExpenses from "components/MonthlyExpenses";
 import React, { useState } from "react";
 import { monthlyExpenses } from "utils/mock";
@@ -23,8 +24,9 @@ const BudgetManager: React.FC = () => {
         <Card label="Monthly Expenses" value={50000} previous={40000} />
       </div>
 
-      <div className="my-3">
+      <div className="my-3 flex gap-5">
         <MonthlyExpenses />
+        <MonthlyBudget />
       </div>
     </div>
   );
