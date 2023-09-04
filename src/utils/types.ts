@@ -27,3 +27,10 @@ export interface CardProps {
   value: number;
   previous: number;
 }
+
+export interface Expense {
+  name: string;
+  color: string;
+  value: number;
+  id: number;
+}

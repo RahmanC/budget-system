@@ -27,7 +27,7 @@ const Card = (props: CardProps) => {
   }, [previous, value]);
 
   return (
-    <div className="shadow-md  p-3 w-1/3 rounded-md my-3">
+    <div className="shadow-md bg-white p-3 w-1/3 rounded-md my-3">
       <p className="font-[500] text-[0.8rem]">{label}</p>
       <p className="font-[700] text-[1.5rem]">
         ₦
