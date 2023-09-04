@@ -21,3 +21,9 @@ export interface NavbarProps {
   title: string;
   username: string;
 }
+
+export interface CardProps {
+  label: string;
+  value: number;
+  previous: number;
+}
