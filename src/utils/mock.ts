@@ -81,3 +81,18 @@ export const monthlyBudget = [
     spent: 6000,
   },
 ];
+
+export const monthlyIncome = [
+  {
+    id: 0,
+    name: "Salary",
+    color: "#38a169",
+    amount: 150000,
+  },
+  {
+    id: 1,
+    name: "Investments",
+    color: "#90f590",
+    amount: 30000,
+  },
+];

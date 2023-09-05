@@ -21,7 +21,7 @@ const AppLayout = () => {
           title={swapTitle[navTitle as keyof typeof swapTitle]}
           username={"Emmanuel"}
         />
-        <div className=" p-5 flex-1">
+        <div className=" p-5 flex-1  overflow-y-auto">
           <Outlet />
         </div>
       </div>

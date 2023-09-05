@@ -5,7 +5,7 @@ const MonthlyBudget: React.FC = () => {
   return (
     <div className="bg-white shadow-inner w-1/2  p-5 rounded-lg flex flex-col">
       <p className="font-[600] text-[1rem] text-[#666666] mb-3">
-        Monthly Budget Breakdown
+        Monthly Income Breakdown
       </p>
 
       {monthlyBudget.map((budget) => {
@@ -26,11 +26,13 @@ const MonthlyBudget: React.FC = () => {
               <p>{budget.name}</p>
 
               <p className="text-[#706d6d] text-[0.8rem]">
+                ₦
                 {budget.spent?.toLocaleString(undefined, {
                   maximumFractionDigits: 2,
                 })}{" "}
                 /{" "}
                 <span className="text-[#66666] font-[600] text-[0.9rem]">
+                  ₦
                   {budget.amount?.toLocaleString(undefined, {
                     maximumFractionDigits: 2,
                   })}

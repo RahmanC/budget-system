@@ -1,6 +1,7 @@
 import Card from "components/Card";
 import MonthlyBudget from "components/MonthlyBudget";
 import MonthlyExpenses from "components/MonthlyExpenses";
+import MonthlyIncome from "components/MonthlyIncome";
 import React, { useState } from "react";
 import { monthlyExpenses } from "utils/mock";
 import { Budget, Expense } from "utils/types";
@@ -27,6 +28,9 @@ const BudgetManager: React.FC = () => {
       <div className="my-3 flex gap-5">
         <MonthlyExpenses />
         <MonthlyBudget />
+      </div>
+      <div>
+        <MonthlyIncome />
       </div>
     </div>
   );

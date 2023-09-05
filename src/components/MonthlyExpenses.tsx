@@ -38,6 +38,7 @@ const MonthlyExpenses: React.FC = () => {
           </div>
           <div className="flex items-center gap-2">
             <p className="text-[#706d6d] text-[0.8rem]">
+              ₦
               {expense.amount.toLocaleString(undefined, {
                 maximumFractionDigits: 2,
               })}
