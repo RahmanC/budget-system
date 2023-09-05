@@ -41,3 +41,9 @@ export interface PaginationProps {
   pageCount: number;
   onPageChange: (selectedItem: { selected: number }) => void;
 }
+
+export interface ListProps {
+  icon: JSX.Element;
+  text: string;
+  link?: string;
+}

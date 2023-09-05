@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useSortBy, useTable, useGlobalFilter, Column } from "react-table";
 import { FaSort, FaSortDown, FaSortUp } from "react-icons/fa";
 import Pagination from "./Pagination";
+import MoreActions from "./MoreActions";
 
 type ColumnData = Array<Column<any>>;
 type RowData = Array<{ [key: string]: any }>;
@@ -73,12 +74,12 @@ const TableData: React.FC<TableDataProps> = ({
                         <span className=" flex items-center">
                           {column.isSorted ? (
                             column.isSortedDesc ? (
-                              <FaSortDown size={16} />
+                              <FaSortDown size={14} />
                             ) : (
-                              <FaSortUp size={16} />
+                              <FaSortUp size={14} />
                             )
                           ) : (
-                            <FaSort size={16} />
+                            <FaSort size={14} color="#e4e4e4" />
                           )}
                         </span>
                       </div>
@@ -113,6 +114,11 @@ const TableData: React.FC<TableDataProps> = ({
                             </td>
                           );
                         })}
+                        {list && (
+                          <td>
+                            <MoreActions budget={row?.original} list={list} />
+                          </td>
+                        )}
                       </tr>
                     );
                   })
