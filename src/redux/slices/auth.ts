@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: "budget",
+  name: "auth",
   initialState,
   reducers: {
     updateIsLoading(state, action) {
@@ -21,6 +21,11 @@ const slice = createSlice({
     },
     updateUserprofile(state, action) {
       state.userProfile = action.payload.userProfile;
+    },
+    signOut(state) {
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      state.userProfile = {};
     },
   },
 });
@@ -50,5 +55,12 @@ export function LoginUser(values: any): any {
         error: false,
       })
     );
+  };
+}
+
+export function LogoutUser(): any {
+  return async (dispatch: any) => {
+    dispatch(slice.actions.signOut());
+    window.location.href = "/login";
   };
 }

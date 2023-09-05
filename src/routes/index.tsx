@@ -3,6 +3,7 @@ import React, { Suspense, lazy, ComponentType } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import { DEFAULT_PATH } from "./config";
 import AuthLayout from "layouts/AuthLayout";
+import { useSelector } from "react-redux";
 
 const Loadable = (Component: ComponentType<any>) => (props: any) => {
   return (
@@ -13,23 +14,39 @@ const Loadable = (Component: ComponentType<any>) => (props: any) => {
 };
 
 export default function Router() {
-  return useRoutes([
-    {
-      path: "/",
-      element: <AppLayout />,
-      children: [
-        { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
-        { path: "dashboard", element: <BudgetManager /> },
-        { path: "budget", element: <Budgets /> },
-        { path: "budget/:id", element: <BudgetItems /> },
-      ],
-    },
-    {
-      path: "/auth",
-      element: <AuthLayout />,
-      children: [{ path: "login", element: <Login /> }],
-    },
-  ]);
+  const { isLoggedIn } = useSelector((state: any) => state.auth);
+
+  return useRoutes(
+    isLoggedIn
+      ? [
+          {
+            path: "/",
+            element: <AppLayout />,
+            children: [
+              {
+                element: <Navigate to={DEFAULT_PATH} replace />,
+                index: true,
+              },
+              { path: "dashboard", element: <BudgetManager /> },
+              { path: "budget", element: <Budgets /> },
+              { path: "budget/:id", element: <BudgetItems /> },
+            ],
+          },
+        ]
+      : [
+          {
+            path: "/",
+            element: <AuthLayout />,
+            children: [
+              {
+                element: <Navigate to="/login" replace />,
+                index: true,
+              },
+              { path: "login", element: <Login /> },
+            ],
+          },
+        ]
+  );
 }
 
 const BudgetManager = Loadable(lazy(() => import("pages/BudgetManager")));
