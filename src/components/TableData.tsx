@@ -54,7 +54,7 @@ const TableData: React.FC<TableDataProps> = ({
   return (
     <div className="  mt-4">
       <div className="flex flex-col">
-        <div className=" bg-white relative border border-opacity-10 shadow-md rounded bg-table p-4 max-w-screen-xl max-h-content min-h-min-content overflow-x-auto min-w-full">
+        <div className=" bg-white relative border border-opacity-10 shadow-md rounded bg-table p-4 max-w-screen-xl min-h-[70vh] overflow-x-auto min-w-full">
           <table
             {...getTableProps()}
             className=" w-full table-collapse text-left"

@@ -12,8 +12,8 @@ import EditBudgetForm from "components/forms/EditBudgetForm";
 
 const BudgetItems = () => {
   const { id } = useParams();
-  const [editModal, setEditModal] = useState(null);
-  const [deleteModal, setDeleteModal] = useState(false);
+  const [editModal, setEditModal] = useState<Budget | null>(null);
+  const [deleteModal, setDeleteModal] = useState<Budget | null>(null);
   const [newModal, setNewModal] = useState(false);
   const [budgetData, setBudgetData] = useState<Budget[]>([]);
 
@@ -21,12 +21,12 @@ const BudgetItems = () => {
     {
       icon: <FaPen size={12} color="#15849d" />,
       text: "Update budget",
-      onClickModal: (data: any) => setEditModal(data),
+      onClickModal: (data: Budget) => setEditModal(data),
     },
     {
       icon: <FaTrash size={12} color="tomato" />,
       text: "Delete Budget",
-      onClickModal: () => setDeleteModal(!deleteModal),
+      onClickModal: (data: Budget) => setDeleteModal(data),
     },
   ];
 
@@ -64,6 +64,17 @@ const BudgetItems = () => {
     }
   };
 
+  //Delete budget
+  const handleDeleteItem = (itemToDelete: any) => {
+    const updatedBudgetData = budgetData.filter(
+      (item) => item.id !== itemToDelete.id
+    );
+
+    setBudgetData(updatedBudgetData);
+
+    setDeleteModal(null);
+  };
+
   useEffect(() => {
     if (id !== undefined && budgetItems.hasOwnProperty(id)) {
       const data = budgetItems[id];
@@ -95,6 +106,28 @@ const BudgetItems = () => {
       {newModal && (
         <Modal handleClose={() => setNewModal(false)}>
           <NewBudgetForm manageItem={handleAddItem} />
+        </Modal>
+      )}
+
+      {deleteModal && (
+        <Modal handleClose={() => setDeleteModal(null)}>
+          <p className="text-center font-[600]">Are you sure?</p>
+          <div className="flex justify-between mt-5 gap-5 w-[100%]">
+            <AppButton
+              label="Cancel"
+              onClick={() => setDeleteModal(null)}
+              style={{ padding: "10px", fontSize: "13px" }}
+            />
+            <AppButton
+              label="Delete"
+              onClick={() => handleDeleteItem(deleteModal)}
+              style={{
+                background: "tomato",
+                fontSize: "13px",
+                padding: "10px",
+              }}
+            />
+          </div>
         </Modal>
       )}
     </div>
