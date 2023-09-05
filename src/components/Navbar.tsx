@@ -8,7 +8,7 @@ const Navbar = ({ title, username }: NavbarProps) => {
       <p className="font-[700] text-[1.3rem]">{title}</p>
       <div className="flex items-center gap-3">
         <div className="w-[40px] h-[40px] bg-[#e4e4e4] rounded-full"></div>
-        <p className="font-[600] text-[1.2rem]">{username}</p>
+        <p className="font-[600] text-[1.2rem] capitalize">{username}</p>
         <IoIosArrowDown color="#666666" />
       </div>
     </div>

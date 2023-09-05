@@ -5,6 +5,8 @@ import AppButton from "components/AppButton";
 import { useNavigate } from "react-router-dom";
 import { AppForm } from "components/forms/AppForm";
 import { AppField } from "components/forms/AppField";
+import { useDispatch } from "react-redux";
+import { LoginUser } from "redux/slices/auth";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -16,9 +18,10 @@ const validationSchema = Yup.object().shape({
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (values: any) => {
-    console.log("clicked");
+    dispatch(LoginUser(values));
     navigate("/");
   };
 

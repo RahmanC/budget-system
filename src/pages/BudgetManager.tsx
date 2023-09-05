@@ -2,18 +2,20 @@ import Card from "components/Card";
 import MonthlyBudget from "components/MonthlyBudget";
 import MonthlyExpenses from "components/MonthlyExpenses";
 import MonthlyIncome from "components/MonthlyIncome";
-import React, { useState } from "react";
-import { monthlyExpenses } from "utils/mock";
-import { Budget, Expense } from "utils/types";
+import React from "react";
+import { useSelector } from "react-redux";
 
 const BudgetManager: React.FC = () => {
-  const [budgets, setBudgets] = useState<Budget[]>([]);
-  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const { userProfile } = useSelector((state: any) => state.auth);
+
+  const user = userProfile?.email?.split("@")[0];
 
   return (
     <div>
       <div>
-        <p className="font-[600] text-[1.5rem]">Welcome back, Emmanuel</p>
+        <p className="font-[600] text-[1.5rem]">
+          Welcome back, <span className="capitalize">{user}</span>
+        </p>
         <p className="text-[#797777] text-[0.8rem]">
           Your dashboard details today
         </p>
