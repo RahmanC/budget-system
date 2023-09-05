@@ -5,19 +5,24 @@ import { budgetItems } from "utils/mock";
 import { Budget, ListProps } from "utils/types";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-
-const list: ListProps[] = [
-  {
-    icon: <FaPen size={12} color="#15849d" />,
-    text: "Update budget",
-  },
-  {
-    icon: <FaTrash size={12} color="tomato" />,
-    text: "Delete Budget",
-  },
-];
+import Modal from "components/Modal";
 
 const BudgetItems = () => {
+  const [editModal, setEditModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  const list: ListProps[] = [
+    {
+      icon: <FaPen size={12} color="#15849d" />,
+      text: "Update budget",
+      onClickModal: () => setEditModal(!editModal),
+    },
+    {
+      icon: <FaTrash size={12} color="tomato" />,
+      text: "Delete Budget",
+      onClickModal: () => setDeleteModal(!deleteModal),
+    },
+  ];
   const { id } = useParams();
 
   const [budgetData, setBudgetData] = useState<Budget[]>([]);
@@ -44,6 +49,8 @@ const BudgetItems = () => {
           list={list}
         />
       </div>
+
+      {editModal && <Modal handleClose={() => setEditModal(false)}>edit</Modal>}
     </div>
   );
 };

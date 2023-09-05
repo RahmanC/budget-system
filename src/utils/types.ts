@@ -46,6 +46,7 @@ export interface ListProps {
   icon: JSX.Element;
   text: string;
   link?: string;
+  onClickModal?: any;
 }
 
 export interface BudgetItems {

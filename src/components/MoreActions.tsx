@@ -18,10 +18,13 @@ const MoreActions: React.FC<{ budget: Budget; list: ListProps[] }> = ({
     setVisible(true);
   };
 
-  const closeDropdown = (link?: string) => {
+  const closeDropdown = (link?: string, onClickModal?: any) => {
     if (link) {
       setLocalStorage(budget);
       navigate(link);
+    } else if (onClickModal) {
+      onClickModal();
+      setVisible(false);
     } else {
       setVisible(false);
     }
@@ -42,11 +45,13 @@ const MoreActions: React.FC<{ budget: Budget; list: ListProps[] }> = ({
           className="absolute top-10 right-0 w-max  min-h-content bg-white border shadow-md rounded overflow-hidden animate-zoom z-10"
           onBlur={() => closeDropdown()}
         >
-          {list.map(({ icon, text, link }) => (
+          {list.map(({ icon, text, link, onClickModal }) => (
             <div
               key={text}
               className="flex items-center gap-2 p-2 font-[500] hover:bg-[#f2f6f7] cursor-pointer"
-              onClick={() => closeDropdown(link && `${link}/${budget.id}`)}
+              onClick={() =>
+                closeDropdown(link ? `${link}/${budget.id}` : onClickModal())
+              }
             >
               {icon}
               <p className="text-[0.8rem] text-[gray]">{text}</p>
