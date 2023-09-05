@@ -23,7 +23,7 @@ const MoreActions: React.FC<{ budget: Budget; list: ListProps[] }> = ({
       setLocalStorage(budget);
       navigate(link);
     } else if (onClickModal) {
-      onClickModal();
+      onClickModal(budget);
       setVisible(false);
     } else {
       setVisible(false);
@@ -50,7 +50,9 @@ const MoreActions: React.FC<{ budget: Budget; list: ListProps[] }> = ({
               key={text}
               className="flex items-center gap-2 p-2 font-[500] hover:bg-[#f2f6f7] cursor-pointer"
               onClick={() =>
-                closeDropdown(link ? `${link}/${budget.id}` : onClickModal())
+                closeDropdown(
+                  link ? `${link}/${budget.id}` : onClickModal(budget)
+                )
               }
             >
               {icon}

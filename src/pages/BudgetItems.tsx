@@ -8,10 +8,11 @@ import { useParams } from "react-router-dom";
 import Modal from "components/Modal";
 import AppButton from "components/AppButton";
 import NewBudgetForm from "components/forms/NewBudgetForm";
+import EditBudgetForm from "components/forms/EditBudgetForm";
 
 const BudgetItems = () => {
   const { id } = useParams();
-  const [editModal, setEditModal] = useState(false);
+  const [editModal, setEditModal] = useState(null);
   const [deleteModal, setDeleteModal] = useState(false);
   const [newModal, setNewModal] = useState(false);
   const [budgetData, setBudgetData] = useState<Budget[]>([]);
@@ -20,7 +21,7 @@ const BudgetItems = () => {
     {
       icon: <FaPen size={12} color="#15849d" />,
       text: "Update budget",
-      onClickModal: () => setEditModal(!editModal),
+      onClickModal: (data: any) => setEditModal(data),
     },
     {
       icon: <FaTrash size={12} color="tomato" />,
@@ -40,6 +41,7 @@ const BudgetItems = () => {
     return maxId + 1;
   };
 
+  // Add new budget
   const handleAddItem = (values: any) => {
     const newItemId = generateUniqueId();
     const newItem = {
@@ -47,6 +49,19 @@ const BudgetItems = () => {
       ...values,
     };
     setBudgetData([...budgetData, newItem]);
+    setNewModal(false);
+  };
+
+  // edit budget
+  const handleEditItem = (editedItem: any) => {
+    const itemIndex = budgetData.findIndex((item) => item.id === editedItem.id);
+
+    if (itemIndex !== -1) {
+      const updatedBudgetData = [...budgetData];
+      updatedBudgetData[itemIndex] = editedItem;
+      setBudgetData(updatedBudgetData);
+      setEditModal(null);
+    }
   };
 
   useEffect(() => {
@@ -72,7 +87,11 @@ const BudgetItems = () => {
         />
       </div>
 
-      {editModal && <Modal handleClose={() => setEditModal(false)}>edit</Modal>}
+      {editModal && (
+        <Modal handleClose={() => setEditModal(null)}>
+          <EditBudgetForm itemData={editModal} manageItem={handleEditItem} />
+        </Modal>
+      )}
       {newModal && (
         <Modal handleClose={() => setNewModal(false)}>
           <NewBudgetForm manageItem={handleAddItem} />

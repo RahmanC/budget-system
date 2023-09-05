@@ -66,6 +66,8 @@ export interface AppFieldProps {
   type?: string;
   icon?: React.ReactElement;
   placeholder?: string;
+  value?: any;
+  options?: any;
 }
 
 export interface ButtonProps {
