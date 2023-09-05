@@ -2,6 +2,7 @@ import AppLayout from "layouts/AppLayout";
 import React, { Suspense, lazy, ComponentType } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import { DEFAULT_PATH } from "./config";
+import AuthLayout from "layouts/AuthLayout";
 
 const Loadable = (Component: ComponentType<any>) => (props: any) => {
   return (
@@ -23,9 +24,15 @@ export default function Router() {
         { path: "budget/:id", element: <BudgetItems /> },
       ],
     },
+    {
+      path: "/auth",
+      element: <AuthLayout />,
+      children: [{ path: "login", element: <Login /> }],
+    },
   ]);
 }
 
 const BudgetManager = Loadable(lazy(() => import("pages/BudgetManager")));
 const Budgets = Loadable(lazy(() => import("pages/Budgets")));
 const BudgetItems = Loadable(lazy(() => import("pages/BudgetItems")));
+const Login = Loadable(lazy(() => import("pages/Login")));
