@@ -1,6 +1,6 @@
 import TableData from "components/TableData";
 import React from "react";
-import { BUDGET_COLUMN } from "utils/TableData";
+import { BUDGET_COLUMN } from "utils/TableColumns";
 
 const Budgets = () => {
   return (

@@ -36,3 +36,8 @@ export interface Expense {
   id: number;
   spent: number;
 }
+
+export interface PaginationProps {
+  pageCount: number;
+  onPageChange: (selectedItem: { selected: number }) => void;
+}
