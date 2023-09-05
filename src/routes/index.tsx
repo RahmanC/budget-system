@@ -18,10 +18,12 @@ export default function Router() {
       element: <AppLayout />,
       children: [
         { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
-        { path: "budget", element: <BudgetManager /> },
+        { path: "dashboard", element: <BudgetManager /> },
+        { path: "budget", element: <Budgets /> },
       ],
     },
   ]);
 }
 
 const BudgetManager = Loadable(lazy(() => import("pages/BudgetManager")));
+const Budgets = Loadable(lazy(() => import("pages/Budgets")));

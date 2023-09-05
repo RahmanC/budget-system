@@ -7,6 +7,6 @@ const ROOT = "/";
 export const PATH_BUDGET = {
   root: ROOT,
   general: {
-    home: path(ROOT, "budget"),
+    home: path(ROOT, "dashboard"),
   },
 };

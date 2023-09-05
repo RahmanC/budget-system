@@ -1,7 +1,8 @@
 import { SwapTitleType } from "./types";
 
 const swapTitle: SwapTitleType = {
-  "/budget": "Home",
+  "/dashboard": "Dashboard",
+  "/budget": "Budgets",
   "/expenses": "Expenses",
 };
 

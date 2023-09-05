@@ -11,7 +11,7 @@ const MonthlyIncome: React.FC = () => {
   return (
     <div className="bg-white shadow-inner w-1/2  p-5 rounded-lg flex flex-col">
       <p className="font-[600] text-[1rem] text-[#666666] mb-3">
-        Monthly Expenses Breakdown
+        Monthly Income Breakdown
       </p>
       <div className="flex flex-row h-[1rem]">
         {monthlyIncome.map((expense) => (

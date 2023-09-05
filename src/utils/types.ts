@@ -13,6 +13,7 @@ export interface Expense {
 }
 
 export interface SwapTitleType {
+  "/dashboard": string;
   "/budget": string;
   "/expenses": string;
 }
