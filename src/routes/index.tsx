@@ -5,7 +5,7 @@ import { DEFAULT_PATH } from "./config";
 
 const Loadable = (Component: ComponentType<any>) => (props: any) => {
   return (
-    <Suspense fallback={"Loading..."}>
+    <Suspense fallback={"Please wait..."}>
       <Component {...props} />
     </Suspense>
   );
@@ -20,6 +20,7 @@ export default function Router() {
         { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
         { path: "dashboard", element: <BudgetManager /> },
         { path: "budget", element: <Budgets /> },
+        { path: "budget/:id", element: <BudgetItems /> },
       ],
     },
   ]);
@@ -27,3 +28,4 @@ export default function Router() {
 
 const BudgetManager = Loadable(lazy(() => import("pages/BudgetManager")));
 const Budgets = Loadable(lazy(() => import("pages/Budgets")));
+const BudgetItems = Loadable(lazy(() => import("pages/BudgetItems")));

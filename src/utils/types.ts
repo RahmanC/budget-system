@@ -1,7 +1,7 @@
 export interface Budget {
   id: number;
   name: string;
-  totalAmount: number;
+  amount: number;
   status: string;
 }
 
@@ -46,4 +46,8 @@ export interface ListProps {
   icon: JSX.Element;
   text: string;
   link?: string;
+}
+
+export interface BudgetItems {
+  [key: number]: Budget[];
 }

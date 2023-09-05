@@ -61,7 +61,7 @@ export const monthlyBudget = [
   },
   {
     id: 3,
-    name: "internet",
+    name: "Internet",
     amount: 10000,
     spent: 10000,
     status: "done",
@@ -75,7 +75,7 @@ export const monthlyBudget = [
   },
   {
     id: 5,
-    name: "miscellaneous",
+    name: "Miscellaneous",
     amount: 5000,
     spent: 1200,
     status: "pending",
@@ -103,3 +103,33 @@ export const monthlyIncome = [
     amount: 30000,
   },
 ];
+
+export const budgetItems = {
+  0: [
+    {
+      id: 0,
+      name: "Denim",
+      amount: 3000,
+      status: "pending",
+    },
+    {
+      id: 1,
+      name: "Cap",
+      amount: 1500,
+      status: "pending",
+    },
+  ],
+  1: [],
+  2: [],
+  3: [],
+  4: [
+    {
+      id: 0,
+      name: "Solidity",
+      amount: 2000,
+      status: "pending",
+    },
+  ],
+  5: [],
+  6: [],
+};
