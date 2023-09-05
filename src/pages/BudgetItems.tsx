@@ -6,10 +6,15 @@ import { Budget, ListProps } from "utils/types";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Modal from "components/Modal";
+import AppButton from "components/AppButton";
+import NewBudgetForm from "components/forms/NewBudgetForm";
 
 const BudgetItems = () => {
+  const { id } = useParams();
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [newModal, setNewModal] = useState(false);
+  const [budgetData, setBudgetData] = useState<Budget[]>([]);
 
   const list: ListProps[] = [
     {
@@ -23,9 +28,26 @@ const BudgetItems = () => {
       onClickModal: () => setDeleteModal(!deleteModal),
     },
   ];
-  const { id } = useParams();
 
-  const [budgetData, setBudgetData] = useState<Budget[]>([]);
+  //generate new id for the newly added item
+  const generateUniqueId = () => {
+    let maxId = 0;
+    for (const key in budgetData) {
+      if (budgetData.hasOwnProperty(key)) {
+        maxId = Math.max(maxId, parseInt(key));
+      }
+    }
+    return maxId + 1;
+  };
+
+  const handleAddItem = (values: any) => {
+    const newItemId = generateUniqueId();
+    const newItem = {
+      id: newItemId,
+      ...values,
+    };
+    setBudgetData([...budgetData, newItem]);
+  };
 
   useEffect(() => {
     if (id !== undefined && budgetItems.hasOwnProperty(id)) {
@@ -39,8 +61,8 @@ const BudgetItems = () => {
 
   return (
     <div>
-      <div className="rounded-lg bg-[#15849d] text-white text-center p-2 flex w-max cursor-pointer">
-        New Budget
+      <div className="flex justify-end">
+        <AppButton label="New Budget Item" onClick={() => setNewModal(true)} />
       </div>
       <div>
         <TableData
@@ -51,6 +73,11 @@ const BudgetItems = () => {
       </div>
 
       {editModal && <Modal handleClose={() => setEditModal(false)}>edit</Modal>}
+      {newModal && (
+        <Modal handleClose={() => setNewModal(false)}>
+          <NewBudgetForm manageItem={handleAddItem} />
+        </Modal>
+      )}
     </div>
   );
 };

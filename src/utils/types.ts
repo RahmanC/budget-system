@@ -52,3 +52,25 @@ export interface ListProps {
 export interface BudgetItems {
   [key: number]: Budget[];
 }
+
+export interface AppFormProps {
+  initialValues: any;
+  onSubmit: (values: any) => void;
+  validationSchema: any;
+  children: React.ReactNode;
+  className?: string;
+}
+
+export interface AppFieldProps {
+  name: string;
+  type?: string;
+  icon?: React.ReactElement;
+  placeholder?: string;
+}
+
+export interface ButtonProps {
+  label: string;
+  onClick?: () => void;
+  style?: any;
+  type?: any;
+}
