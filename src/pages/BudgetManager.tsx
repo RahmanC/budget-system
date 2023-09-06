@@ -11,7 +11,7 @@ const BudgetManager: React.FC = () => {
     (state: any) => state.budget
   );
 
-  const user = userProfile?.email?.split("@")[0];
+  const user = userProfile?.username?.split("@")[0];
 
   return (
     <div>

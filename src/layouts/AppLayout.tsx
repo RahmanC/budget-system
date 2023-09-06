@@ -11,7 +11,7 @@ const AppLayout = () => {
   const [navTitle, setNavTitle] = useState<string>("budget");
   const { userProfile, isLoggedIn } = useSelector((state: any) => state.auth);
 
-  const user = userProfile?.email?.split("@")[0];
+  const user = userProfile?.username?.split("@")[0];
 
   const path = useLocation();
 

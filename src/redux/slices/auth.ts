@@ -48,12 +48,13 @@ export function LoginUser(values: any): any {
     );
 
     const response: any = await login(values);
+
     if (response.status === 200 && response.data.success) {
       loginSuccessToast(response.data.message);
       dispatch(
         slice.actions.updateIsLoggenIn({
           isLoggedIn: true,
-          userProfile: response.data.user,
+          userProfile: response.data.data.user,
         })
       );
       setTimeout(() => {

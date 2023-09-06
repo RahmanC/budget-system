@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3000";
+const baseUrl = "https://budget-server-5ojt.onrender.com";
 
 const config = {
   baseURL: baseUrl,
