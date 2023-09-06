@@ -26,7 +26,7 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 ### Website Preview
-Open [https://consode-budget.vercel.app](Budget System) to preview
+Open [https://consode-budget.vercel.app](https://consode-budget.vercel.app) to preview
 
 ## Login Details
 
