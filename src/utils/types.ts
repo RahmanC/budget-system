@@ -3,6 +3,7 @@ export interface Budget {
   name: string;
   amount: number;
   status: string;
+  spent: number;
 }
 
 export interface Expense {
@@ -35,6 +36,15 @@ export interface Expense {
   value: number;
   id: number;
   spent: number;
+}
+
+export interface BudgetState {
+  isLoading: boolean;
+  error: boolean;
+  budget: Budget[];
+  budgetItems: any;
+  expenses: any[];
+  income: any;
 }
 
 export interface PaginationProps {

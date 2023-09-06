@@ -1,9 +1,10 @@
 import TableData from "components/TableData";
 import React from "react";
 import { BUDGET_COLUMN } from "utils/TableColumns";
-import { monthlyBudget } from "utils/mock";
+
 import { ListProps } from "utils/types";
 import { FaEye } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const list: ListProps[] = [
   {
@@ -14,14 +15,12 @@ const list: ListProps[] = [
 ];
 
 const Budgets = () => {
+  const { budget } = useSelector((state: any) => state.budget);
+
   return (
     <div>
       <div>
-        <TableData
-          columnData={BUDGET_COLUMN}
-          rowData={monthlyBudget}
-          list={list}
-        />
+        <TableData columnData={BUDGET_COLUMN} rowData={budget} list={list} />
       </div>
     </div>
   );

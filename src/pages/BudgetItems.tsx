@@ -1,7 +1,7 @@
 import TableData from "components/TableData";
 import React, { useEffect, useState } from "react";
 import { BUDGET_ITEMS_COLUMN } from "utils/TableColumns";
-import { budgetItems } from "utils/mock";
+
 import { Budget, ListProps } from "utils/types";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { useParams } from "react-router-dom";
@@ -9,9 +9,19 @@ import Modal from "components/Modal";
 import AppButton from "components/AppButton";
 import NewBudgetForm from "components/forms/NewBudgetForm";
 import EditBudgetForm from "components/forms/EditBudgetForm";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {
+  addBudgetItems,
+  deleteBudgetItems,
+  editBudgetItems,
+} from "redux/slices/budget";
 
 const BudgetItems = () => {
-  const { id } = useParams();
+  const { id = "defaultId" } = useParams();
+  const dispatch = useDispatch();
+
+  const { budgetItems } = useSelector((state: any) => state.budget);
   const [editModal, setEditModal] = useState<Budget | null>(null);
   const [deleteModal, setDeleteModal] = useState<Budget | null>(null);
   const [newModal, setNewModal] = useState(false);
@@ -48,7 +58,8 @@ const BudgetItems = () => {
       id: newItemId,
       ...values,
     };
-    setBudgetData([...budgetData, newItem]);
+    dispatch(addBudgetItems(parseInt(id), newItem));
+
     setNewModal(false);
   };
 
@@ -60,6 +71,7 @@ const BudgetItems = () => {
       const updatedBudgetData = [...budgetData];
       updatedBudgetData[itemIndex] = editedItem;
       setBudgetData(updatedBudgetData);
+      dispatch(editBudgetItems(parseInt(id), editedItem.id, editedItem));
       setEditModal(null);
     }
   };
@@ -71,6 +83,7 @@ const BudgetItems = () => {
     );
 
     setBudgetData(updatedBudgetData);
+    dispatch(deleteBudgetItems(parseInt(id), itemToDelete.id));
 
     setDeleteModal(null);
   };
@@ -83,7 +96,7 @@ const BudgetItems = () => {
       // Handle the case when id is undefined or not found in budgetItems
       setBudgetData([]);
     }
-  }, [id]);
+  }, [budgetItems, id]);
 
   return (
     <div>
