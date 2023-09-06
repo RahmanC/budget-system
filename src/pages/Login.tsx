@@ -26,24 +26,26 @@ const SignIn = () => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-md p-[1.5rem]">
-      <p className="text-[1.6rem] text-[#5b5b5b] font-[900]">
-        Budget Management System
-      </p>
+    <div className="flex items-center justify-center flex-1 w-[100%] h-screen px-[3.5rem] ">
+      <div className="bg-white shadow-lg rounded-md p-[1.5rem]">
+        <p className="text-[1.6rem] text-[#5b5b5b] font-[900]">
+          Budget Management System
+        </p>
 
-      <p className="text-[0.9rem] text-[#15849d] font-[500]">
-        Sign in to manage your expenses
-      </p>
-      <div className="mt-[2.5rem]">
-        <AppForm
-          initialValues={{ email: "", password: "" }}
-          onSubmit={handleSubmit}
-          validationSchema={validationSchema}
-        >
-          <AppField name="email" placeholder="Email address" />
-          <AppField name="password" placeholder="Password" type="password" />
-          <AppButton type={"submit"} label="Sign In" />
-        </AppForm>
+        <p className="text-[0.9rem] text-[#15849d] font-[500]">
+          Sign in to manage your expenses
+        </p>
+        <div className="mt-[2.5rem]">
+          <AppForm
+            initialValues={{ email: "", password: "" }}
+            onSubmit={handleSubmit}
+            validationSchema={validationSchema}
+          >
+            <AppField name="email" placeholder="Email address" />
+            <AppField name="password" placeholder="Password" type="password" />
+            <AppButton type={"submit"} label="Sign In" />
+          </AppForm>
+        </div>
       </div>
     </div>
   );
