@@ -1,14 +1,18 @@
 import React from "react";
-import { monthlyBudget } from "utils/mock";
+import { useNavigate } from "react-router-dom";
 
-const MonthlyBudget: React.FC = () => {
+const MonthlyBudget = ({ data }) => {
+  const navigate = useNavigate();
   return (
-    <div className="bg-white shadow-inner w-1/2  p-5 rounded-lg flex flex-col">
+    <div
+      className="bg-white shadow-inner w-1/2  p-5 rounded-lg flex flex-col cursor-pointer"
+      onClick={() => navigate("/budget")}
+    >
       <p className="font-[600] text-[1rem] text-[#666666] mb-3">
         Monthly Budget Breakdown
       </p>
 
-      {monthlyBudget.map((budget) => {
+      {data.map((budget) => {
         // Calculate the percentage spent
         const percentageSpent = (budget.spent / budget.amount) * 100;
 

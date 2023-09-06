@@ -7,6 +7,9 @@ import { useSelector } from "react-redux";
 
 const BudgetManager: React.FC = () => {
   const { userProfile } = useSelector((state: any) => state.auth);
+  const { budget, expenses, income } = useSelector(
+    (state: any) => state.budget
+  );
 
   const user = userProfile?.email?.split("@")[0];
 
@@ -28,11 +31,11 @@ const BudgetManager: React.FC = () => {
       </div>
 
       <div className="my-3 flex gap-5">
-        <MonthlyExpenses />
-        <MonthlyBudget />
+        <MonthlyExpenses data={expenses} />
+        <MonthlyBudget data={budget} />
       </div>
       <div>
-        <MonthlyIncome />
+        <MonthlyIncome data={income} />
       </div>
     </div>
   );

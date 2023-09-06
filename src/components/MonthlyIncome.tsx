@@ -1,9 +1,8 @@
 import React from "react";
-import { monthlyIncome } from "utils/mock";
 
-const MonthlyIncome: React.FC = () => {
+const MonthlyIncome = ({ data }) => {
   // Calculate the total monthly expenses amount
-  const totalExpenses = monthlyIncome.reduce(
+  const totalExpenses = data?.reduce(
     (total, expense) => total + expense.amount,
     0
   );
@@ -14,7 +13,7 @@ const MonthlyIncome: React.FC = () => {
         Monthly Income Breakdown
       </p>
       <div className="flex flex-row h-[1rem]">
-        {monthlyIncome.map((expense) => (
+        {data?.map((expense) => (
           <div
             key={expense.id}
             className=" text-transparent"
@@ -27,7 +26,7 @@ const MonthlyIncome: React.FC = () => {
           </div>
         ))}
       </div>
-      {monthlyIncome.map((expense) => {
+      {data?.map((expense) => {
         const percentage = (expense.amount / totalExpenses) * 100;
 
         return (
