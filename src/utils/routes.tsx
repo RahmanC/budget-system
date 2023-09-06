@@ -1,8 +1,17 @@
 import { AiOutlineHome } from "react-icons/ai";
+import { GiTakeMyMoney } from "react-icons/gi";
 
 const myRoutes = {
-  home: { icon: <AiOutlineHome />, title: "Home", path: "/dashboard" },
-  budget: { icon: <AiOutlineHome />, title: "Budgets", path: "/budget" },
+  home: {
+    icon: <AiOutlineHome size={20} color="#15849d" />,
+    title: "Home",
+    path: "/dashboard",
+  },
+  budget: {
+    icon: <GiTakeMyMoney size={20} color="#15849d" />,
+    title: "Budgets",
+    path: "/budget",
+  },
   // expenses: { icon: <AiOutlineHome />, title: "Expenses", path: "/expenses" },
 };
 

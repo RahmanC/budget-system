@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UtilContext from "context/UtilContext";
 
 const NavItem = (props: {
   path: string;
@@ -8,8 +9,10 @@ const NavItem = (props: {
 }) => {
   const { path, icon, title } = props;
   const [isActive, setIsActive] = useState(false);
+  const { toggleHamburger } = useContext(UtilContext);
 
   const handleNavLinkClick = () => {
+    toggleHamburger();
     setIsActive(true);
   };
 

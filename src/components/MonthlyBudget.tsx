@@ -25,7 +25,7 @@ const MonthlyBudget = ({ data }) => {
         };
 
         return (
-          <div>
+          <div key={budget.id}>
             <div className="mt-[2rem] flex items-center justify-between">
               <p>{budget.name}</p>
 

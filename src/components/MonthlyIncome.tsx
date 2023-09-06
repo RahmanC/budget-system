@@ -30,7 +30,10 @@ const MonthlyIncome = ({ data }) => {
         const percentage = (expense.amount / totalExpenses) * 100;
 
         return (
-          <div className="mt-[2rem] flex items-center justify-between">
+          <div
+            key={expense.id}
+            className="mt-[2rem] flex items-center justify-between"
+          >
             <div className="flex items-center gap-2">
               <div
                 className="w-[10px] h-[10px] rounded-full"

@@ -30,9 +30,9 @@ const AppLayout = () => {
           className={` ${
             isMobile && showHamburger
               ? "w-[100%] z-10"
-              : !isMobile && !showHamburger
-              ? "w-[15%]"
-              : "w-0"
+              : isMobile && !showHamburger
+              ? "w-0"
+              : "w-[15%]"
           }`}
         >
           <Sidebar />
