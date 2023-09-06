@@ -2,14 +2,15 @@ import React from "react";
 
 import * as Yup from "yup";
 import AppButton from "components/AppButton";
-import { useNavigate } from "react-router-dom";
+
 import { AppForm } from "components/forms/AppForm";
 import { AppField } from "components/forms/AppField";
 import { useDispatch } from "react-redux";
 import { LoginUser } from "redux/slices/auth";
+import { useSelector } from "react-redux";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string()
+  username: Yup.string()
     .email("Invalid email address")
     .required("Required")
     .label("Email"),
@@ -17,12 +18,12 @@ const validationSchema = Yup.object().shape({
 });
 
 const SignIn = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { isLoading } = useSelector((state: any) => state.auth);
 
   const handleSubmit = (values: any) => {
     dispatch(LoginUser(values));
-    navigate("/");
   };
 
   return (
@@ -37,13 +38,17 @@ const SignIn = () => {
         </p>
         <div className="mt-[2.5rem]">
           <AppForm
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ username: "", password: "" }}
             onSubmit={handleSubmit}
             validationSchema={validationSchema}
           >
-            <AppField name="email" placeholder="Email address" />
+            <AppField name="username" placeholder="Email address" />
             <AppField name="password" placeholder="Password" type="password" />
-            <AppButton type={"submit"} label="Sign In" />
+            <AppButton
+              disabled={isLoading}
+              type={"submit"}
+              label={isLoading ? "please wait" : "Sign In"}
+            />
           </AppForm>
         </div>
       </div>

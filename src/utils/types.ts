@@ -85,6 +85,7 @@ export interface ButtonProps {
   onClick?: () => void;
   style?: any;
   type?: any;
+  disabled?: any;
 }
 
 export interface contextProps {

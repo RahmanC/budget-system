@@ -1,4 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  invalidCredentialToast,
+  loginSuccessToast,
+} from "components/Notification";
+import { login } from "services";
 
 const initialState = {
   isLoggedIn: false,
@@ -42,12 +47,27 @@ export function LoginUser(values: any): any {
       })
     );
 
-    dispatch(
-      slice.actions.updateIsLoggenIn({
-        isLoggedIn: true,
-        userProfile: values,
-      })
-    );
+    const response: any = await login(values);
+    if (response.status === 200 && response.data.success) {
+      loginSuccessToast(response.data.message);
+      dispatch(
+        slice.actions.updateIsLoggenIn({
+          isLoggedIn: true,
+          userProfile: response.data.user,
+        })
+      );
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
+    } else {
+      invalidCredentialToast(response.data.message);
+      dispatch(
+        slice.actions.updateIsLoading({
+          isLoading: false,
+          error: false,
+        })
+      );
+    }
 
     dispatch(
       slice.actions.updateIsLoading({
