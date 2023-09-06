@@ -41,7 +41,7 @@ export const BUDGET_COLUMN = [
         <p
           className={`text-center text-white font-[600] text-[0.8rem] ${
             value === "done" ? "bg-green-600" : "bg-yellow-600"
-          } w-[5vw] p-1 rounded-md shadow-md`}
+          } w-full md:w-[5vw] p-1 rounded-md shadow-md`}
         >
           {value}
         </p>
@@ -76,7 +76,7 @@ export const BUDGET_ITEMS_COLUMN = [
         <p
           className={`text-center text-white font-[600] text-[0.8rem] ${
             value === "done" ? "bg-green-600" : "bg-yellow-600"
-          } w-[5vw] p-1 rounded-md shadow-md`}
+          } w-full md:w-[5vw] p-1 rounded-md shadow-md`}
         >
           {value}
         </p>

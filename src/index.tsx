@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider as AppProvider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { store } from "redux/store";
+import { UtilProvider } from "context/UtilContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,9 +14,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.Fragment>
     <AppProvider store={store}>
-      <Router>
-        <App />
-      </Router>
+      <UtilProvider>
+        <Router>
+          <App />
+        </Router>
+      </UtilProvider>
     </AppProvider>
   </React.Fragment>
 );

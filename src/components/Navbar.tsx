@@ -4,6 +4,7 @@ import { IoIosArrowDown, IoMdLogOut } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { LogoutUser } from "redux/slices/auth";
 import { useClickOutside } from "hooks/useClickOutside";
+import MobileHamburger from "./MobileHamburger";
 
 const Navbar = ({ title, username }: NavbarProps) => {
   const { visible, setVisible, ref, ref1 } = useClickOutside();
@@ -17,11 +18,17 @@ const Navbar = ({ title, username }: NavbarProps) => {
     setVisible(true);
   };
 
-  const closeDropdown = () => {};
+  const closeDropdown = () => {
+    setVisible(false);
+  };
 
   return (
     <div className="w-[100%] bg-white  drop-shadow-md p-5  flex justify-between items-center ">
-      <p className="font-[700] text-[1.3rem]">{title}</p>
+      <div className="flex items-center gap-3">
+        <MobileHamburger />
+        <div className="font-[900] text-[2rem] hidden md:flex ">CCICC</div>
+        <p className="font-[700] text-[1.3rem] ml-0 md:ml-[45%] ">{title}</p>
+      </div>
       <div
         className="flex items-center gap-3 cursor-pointer"
         ref={ref1}

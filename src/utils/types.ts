@@ -86,3 +86,13 @@ export interface ButtonProps {
   style?: any;
   type?: any;
 }
+
+export interface contextProps {
+  isMobile: boolean;
+  showHamburger: boolean;
+  toggleHamburger: () => void;
+}
+
+export interface AppProps {
+  children: React.ReactNode;
+}

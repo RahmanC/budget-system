@@ -5,7 +5,7 @@ const MonthlyBudget = ({ data }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="bg-white shadow-inner w-1/2  p-5 rounded-lg flex flex-col cursor-pointer"
+      className="bg-white shadow-inner w-full md:w-1/2  p-5 rounded-lg flex flex-col cursor-pointer"
       onClick={() => navigate("/budget")}
     >
       <p className="font-[600] text-[1rem] text-[#666666] mb-3">

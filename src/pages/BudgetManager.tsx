@@ -24,13 +24,13 @@ const BudgetManager: React.FC = () => {
         </p>
       </div>
 
-      <div className="flex gap-5 ">
+      <div className="flex flex-col md:flex-row gap-2 md:gap-5 ">
         <Card label="Total Balance" value={200000} previous={178000} />
         <Card label="Monthly Income" value={120000} previous={140000} />
         <Card label="Monthly Expenses" value={50000} previous={40000} />
       </div>
 
-      <div className="my-3 flex gap-5">
+      <div className="my-3 flex flex-col md:flex-row gap-5">
         <MonthlyExpenses data={expenses} />
         <MonthlyBudget data={budget} />
       </div>
