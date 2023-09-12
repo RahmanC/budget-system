@@ -8,6 +8,7 @@ import { AppField } from "components/forms/AppField";
 import { useDispatch } from "react-redux";
 import { LoginUser } from "redux/slices/auth";
 import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string()
@@ -20,13 +21,13 @@ const validationSchema = Yup.object().shape({
 const SignIn = () => {
   const dispatch = useDispatch();
 
-  const { isLoading } = useSelector((state: any) => state.auth);
+  const { isLoading, isLoggedIn } = useSelector((state: any) => state.auth);
 
   const handleSubmit = (values: any) => {
     dispatch(LoginUser(values));
   };
 
-  return (
+  return !isLoggedIn ? (
     <div className="flex items-center justify-center flex-1 w-[100%] h-screen px-[3.5rem] ">
       <div className="bg-white shadow-lg rounded-md p-[1.5rem]">
         <p className="text-[1.3rem] md:text-[1.6rem] text-[#5b5b5b] text-center font-[900]">
@@ -53,6 +54,8 @@ const SignIn = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <Navigate to="/dashboard" replace />
   );
 };
 

@@ -28,6 +28,7 @@ export interface CardProps {
   label: string;
   value: number;
   previous: number;
+  check?: boolean;
 }
 
 export interface Expense {

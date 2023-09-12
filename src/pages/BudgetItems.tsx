@@ -1,6 +1,6 @@
 import TableData from "components/TableData";
-import React, { useEffect, useState } from "react";
-import { BUDGET_ITEMS_COLUMN } from "utils/TableColumns";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { BUDGET_ITEMS_COLUMN } from "components/TableColumns";
 
 import { Budget, ListProps } from "utils/types";
 import { FaPen, FaTrash } from "react-icons/fa";
@@ -16,16 +16,18 @@ import {
   deleteBudgetItems,
   editBudgetItems,
 } from "redux/slices/budget";
+import Card from "components/Card";
 
 const BudgetItems = () => {
   const { id = "defaultId" } = useParams();
   const dispatch = useDispatch();
 
-  const { budgetItems } = useSelector((state: any) => state.budget);
+  const { budget, budgetItems } = useSelector((state: any) => state.budget);
   const [editModal, setEditModal] = useState<Budget | null>(null);
   const [deleteModal, setDeleteModal] = useState<Budget | null>(null);
   const [newModal, setNewModal] = useState(false);
   const [budgetData, setBudgetData] = useState<Budget[]>([]);
+  const [budgetValues, setBudgetValues] = useState<any>();
 
   const list: ListProps[] = [
     {
@@ -39,6 +41,11 @@ const BudgetItems = () => {
       onClickModal: (data: Budget) => setDeleteModal(data),
     },
   ];
+
+  useLayoutEffect(() => {
+    const match = budget.find((item) => item.id == id);
+    setBudgetValues(match);
+  }, [id, budget]);
 
   //generate new id for the newly added item
   const generateUniqueId = () => {
@@ -100,9 +107,29 @@ const BudgetItems = () => {
 
   return (
     <div>
-      <div className="flex justify-end">
-        <AppButton label="New Budget Item" onClick={() => setNewModal(true)} />
+      <div className="flex items-center gap-5 justify-between">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-5 w-[70%] ">
+          <Card
+            label="Total Budget Amount"
+            value={budgetValues?.amount}
+            previous={178000}
+            check={true}
+          />
+          <Card
+            label="Total Amount Spent"
+            value={budgetValues?.spent}
+            previous={140000}
+            check={true}
+          />
+        </div>
+        <div className="w-[20%]">
+          <AppButton
+            label="New Budget Item"
+            onClick={() => setNewModal(true)}
+          />
+        </div>
       </div>
+
       <div>
         <TableData
           columnData={BUDGET_ITEMS_COLUMN}

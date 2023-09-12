@@ -1,6 +1,6 @@
 import TableData from "components/TableData";
 import React from "react";
-import { BUDGET_COLUMN } from "utils/TableColumns";
+import { BUDGET_COLUMN } from "components/TableColumns";
 
 import { ListProps } from "utils/types";
 import { FaEye } from "react-icons/fa";

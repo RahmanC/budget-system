@@ -56,7 +56,7 @@ export const BUDGET_ITEMS_COLUMN = [
     accessor: "name",
   },
   {
-    header: "Total Budget Amount",
+    header: "Budget Amount",
     accessor: "amount",
     Cell: ({ value }) => {
       return (

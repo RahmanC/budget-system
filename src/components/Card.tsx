@@ -3,7 +3,7 @@ import { CardProps } from "utils/types";
 import { AiOutlineFall, AiOutlineRise } from "react-icons/ai";
 
 const Card = (props: CardProps) => {
-  const { label, value, previous } = props;
+  const { label, value, previous, check } = props;
 
   const [increase, setIncrease] = useState<boolean>(false);
   const [percentage, setPercentage] = useState<number | null>(null);
@@ -35,29 +35,31 @@ const Card = (props: CardProps) => {
           maximumFractionDigits: 2,
         })}
       </p>
-      <div className="flex justify-between items-center mt-[2rem]">
-        <div className="flex items-center gap-1">
-          <>
-            {increase ? (
-              <AiOutlineRise color="green" />
-            ) : (
-              <AiOutlineFall color="tomato" />
-            )}
-            <p className={increase ? "text-[green]" : "text-[tomato]"}>
-              {percentage?.toLocaleString(undefined, {
-                maximumFractionDigits: 2,
-              })}
-              %
-            </p>
-          </>
+      {!check && (
+        <div className="flex justify-between items-center mt-[2rem]">
+          <div className="flex items-center gap-1">
+            <>
+              {increase ? (
+                <AiOutlineRise color="green" />
+              ) : (
+                <AiOutlineFall color="tomato" />
+              )}
+              <p className={increase ? "text-[green]" : "text-[tomato]"}>
+                {percentage?.toLocaleString(undefined, {
+                  maximumFractionDigits: 2,
+                })}
+                %
+              </p>
+            </>
+          </div>
+          <p className="text-[#666666] text-[0.8rem] font-[600]">
+            last month: ₦
+            {previous?.toLocaleString(undefined, {
+              maximumFractionDigits: 2,
+            })}
+          </p>
         </div>
-        <p className="text-[#666666] text-[0.8rem] font-[600]">
-          last month: ₦
-          {previous?.toLocaleString(undefined, {
-            maximumFractionDigits: 2,
-          })}
-        </p>
-      </div>
+      )}
     </div>
   );
 };

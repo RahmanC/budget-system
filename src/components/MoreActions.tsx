@@ -15,7 +15,7 @@ const MoreActions: React.FC<{ budget: Budget; list: ListProps[] }> = ({
   const navigate = useNavigate();
 
   const openDropdown = () => {
-    setVisible(true);
+    setVisible(!visible);
   };
 
   const closeDropdown = (link?: string, onClickModal?: any) => {
